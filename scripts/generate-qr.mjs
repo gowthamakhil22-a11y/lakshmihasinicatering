@@ -133,7 +133,12 @@ function findChrome() {
   return candidates.find((p) => existsSync(p));
 }
 
-const url = process.argv[2] || (await siteUrlFromEnv());
+const url = process.argv.slice(2).find((a) => /^https?:/i.test(a)) || (await siteUrlFromEnv());
+// Printed codes open /go/, which forwards to the menu, Google Maps or any link
+// chosen later in /admin, so cards never need reprinting. Use --direct to skip it.
+const direct = process.argv.includes('--direct');
+const site = url.replace(/\/?$/, '/');
+const qrUrl = direct ? site : `${site}go/`;
 if (!/^https?:\/\//i.test(url)) {
   console.error('No site URL. Pass one (npm run qr -- https://...) or set VITE_SITE_URL in .env');
   process.exit(1);
@@ -146,20 +151,20 @@ const opts = {
 };
 
 await mkdir('qr', { recursive: true });
-await QRCode.toFile('qr/menu-qr.png', url, { ...opts, width: 2000 });
-await writeFile('qr/menu-qr.svg', await QRCode.toString(url, { ...opts, type: 'svg' }));
+await QRCode.toFile('qr/menu-qr.png', qrUrl, { ...opts, width: 2000 });
+await writeFile('qr/menu-qr.svg', await QRCode.toString(qrUrl, { ...opts, type: 'svg' }));
 
-const qrSvg = await QRCode.toString(url, {
+const qrSvg = await QRCode.toString(qrUrl, {
   errorCorrectionLevel: 'H',
   margin: 0,
   type: 'svg',
   color: { dark: '#0E3D27', light: '#F6EFDD' },
 });
 const details = await businessDetails();
-await writeFile('qr/table-card.html', cardHtml({ qrSvg, url, ...details }));
+await writeFile('qr/table-card.html', cardHtml({ qrSvg, url: site, ...details }));
 
 // Business card: QR in deep green on cream, photo embedded so the file is self-contained.
-const cardQr = await QRCode.toString(url, {
+const cardQr = await QRCode.toString(qrUrl, {
   errorCorrectionLevel: 'H',
   margin: 0,
   type: 'svg',
@@ -192,4 +197,4 @@ if (chrome) {
 } else {
   console.log('Open the .html files in qr/ with Chrome and Print → Save as PDF (margins none).');
 }
-console.log(`QR codes for ${url} written to qr/`);
+console.log(`QR codes open ${qrUrl} – written to qr/`);

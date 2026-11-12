@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#0e3d27" />
+<title>Lakshmi Hasini Catering</title>
+<link rel="icon" type="image/svg+xml" href="__BASE__favicon.svg" />
+<style>
+  html,body{margin:0;height:100%}
+  body{display:grid;place-items:center;background:radial-gradient(ellipse 80% 70% at 50% 40%,#174431 0%,#0c2619 70%,#07170f 100%);color:#e9e1cb;font:16px/1.4 Georgia,'Times New Roman',serif;text-align:center}
+  .m{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;background:#f6efdd;box-shadow:0 0 0 1px #d2b06a,0 0 0 6px #0c2619,0 0 0 7px rgba(210,176,106,.5);display:grid;place-items:center}
+  h1{margin:0;font-weight:600;font-size:26px;color:#d2b06a}
+  p{margin:8px 0 0;opacity:.75;font-style:italic}
+  a{color:#d2b06a}
+  .dots span{display:inline-block;width:6px;height:6px;margin:14px 3px 0;border-radius:50%;background:#d2b06a;animation:b 1s infinite ease-in-out}
+  .dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+  @keyframes b{0%,80%,100%{opacity:.25}40%{opacity:1}}
+</style>
+</head>
+<body>
+<main>
+  <div class="m"><svg width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M16 34c-6.5-1-9-9.5-3.6-13.6 1.8-1.4 4-1.9 6-1.6C19.5 11 26 6.6 32.3 9c2.7-4.6 9.7-5.4 13.4-1.3 2.2 2.4 2.7 5.7 1.6 8.5 5.5-.6 9.6 4.6 7.6 9.7-1.1 2.8-3.7 4.6-6.6 4.9" stroke="#0F4A2E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 46c0-8.3 6.7-15 15-15s15 6.7 15 15H18Z" fill="#C29A45"/><rect x="14" y="46.5" width="38" height="3.6" rx="1.8" fill="#A8802F"/></svg></div>
+  <h1>Lakshmi Hasini Catering</h1>
+  <p id="msg">Opening…</p>
+  <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+  <noscript><p><a href="__BASE__">Open the menu</a></p></noscript>
+</main>
+<script>
+(function () {
+  // The QR code points here. Where it goes is set in /admin → Business details → QR code.
+  var API = '__API__';
+  var MENU = '__BASE__';
+  var done = false;
+  function go(url) {
+    if (done) return;
+    done = true;
+    location.replace(url);
+  }
+  function target(s) {
+    var t = String((s && s.qr_target) || '').trim();
+    if (t === 'maps') {
+      var m = String(s.maps_url || '').trim();
+      if (/^https:\/\//i.test(m)) return m;
+      var addr = String(s.location || s.business_name || '').trim();
+      return addr ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr) : MENU;
+    }
+    if (/^https?:\/\/[^\s]+\.[^\s]+/i.test(t)) return t;
+    return MENU;
+  }
+  // Never leave a guest waiting: fall back to the menu after 3.5 s.
+  setTimeout(function () { go(MENU); }, 3500);
+  if (!API) return go(MENU);
+  try {
+    fetch(API, { cache: 'no-store', redirect: 'follow' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { go(j && j.ok ? target(j.data && j.data.settings) : MENU); })
+      .catch(function () { go(MENU); });
+  } catch (e) { go(MENU); }
+})();
+</script>
+</body>
+</html>

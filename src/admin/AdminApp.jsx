@@ -69,6 +69,12 @@ const SETTINGS = [
   { key: 'trust_line', label: 'Trust line (optional)', hint: 'Real facts only, e.g. “Serving Rajahmundry since 2012 · 400+ weddings”. Shown on the cover.' },
   { key: 'testimonial', label: 'Customer quote (optional)', type: 'textarea', hint: 'A real customer’s words. Shown on the last page.' },
   { key: 'testimonial_by', label: 'Quote by (optional)', hint: 'e.g. Ravi & Sita, wedding, March 2025' },
+  {
+    key: 'qr_target',
+    label: 'Where the QR code goes',
+    type: 'qr',
+    check: (v) => !v || v === 'menu' || v === 'maps' || /^https?:\/\/\S+\.\S+/.test(v) || 'Paste a full link starting with https://',
+  },
 ];
 
 /* ---------- helpers ---------- */
@@ -506,12 +512,71 @@ function SettingsView({ data, onSaveMany, busy }) {
       note: 'Optional. Leave empty to hide. Use real facts and real customer words only.',
       keys: ['trust_line', 'testimonial', 'testimonial_by'],
     },
+    {
+      title: 'QR code',
+      note: 'Your printed QR codes open this short link. Change where it goes here – no need to reprint.',
+      keys: ['qr_target'],
+    },
   ];
   const byKey = Object.fromEntries(SETTINGS.map((f) => [f.key, f]));
   const wa = sanitizeWhatsAppNumber(draft.whatsapp_number);
   const missing = ['whatsapp_number', 'phone_number'].filter((k) => !String(draft[k] || '').trim());
 
-  const field = (f) => (
+  const goLink = `${window.location.origin}${import.meta.env.BASE_URL}go/`;
+  const qrValue = draft.qr_target || 'menu';
+  const qrMode = qrValue === 'menu' || qrValue === 'maps' ? qrValue : 'link';
+  const setQr = (v) => setDraft((d) => ({ ...d, qr_target: v }));
+  const qrField = (f) => (
+    <div key={f.key} className={styles.field}>
+      <span className={styles.qrLabel}>{f.label}</span>
+      <div className={styles.segment} role="radiogroup" aria-label={f.label}>
+        {[
+          ['menu', 'Menu book'],
+          ['maps', 'Google Maps'],
+          ['link', 'Another link'],
+        ].map(([val, label]) => (
+          <button
+            key={val}
+            type="button"
+            role="radio"
+            aria-checked={qrMode === val}
+            onClick={() => setQr(val === 'link' ? (qrMode === 'link' ? qrValue : 'https://') : val)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      {qrMode === 'link' && (
+        <input
+          id="s-qr_target"
+          type="url"
+          inputMode="url"
+          placeholder="https://"
+          value={qrValue}
+          onChange={(e) => setQr(e.target.value.trim())}
+          aria-label="Link the QR code opens"
+        />
+      )}
+      {errors[f.key] ? (
+        <small className={styles.fieldError}>{errors[f.key]}</small>
+      ) : (
+        <small>
+          {qrMode === 'menu' && 'Guests see the menu book. This is the normal setting.'}
+          {qrMode === 'maps' && (draft.maps_url ? 'Opens your Google Maps link above.' : 'Opens your address in Google Maps. Add a Google Maps link above for an exact pin.')}
+          {qrMode === 'link' && 'Any web page, e.g. an offer or an Instagram page.'}
+        </small>
+      )}
+      <div className={styles.qrLink}>
+        <span>Printed QR link</span>
+        <code>{goLink}</code>
+        <a href={goLink} target="_blank" rel="noopener noreferrer">
+          Test it ↗
+        </a>
+      </div>
+    </div>
+  );
+
+  const field = (f) => f.type === 'qr' ? qrField(f) : (
     <div key={f.key} className={styles.field} data-warn={missing.includes(f.key) || undefined}>
       <label htmlFor={`s-${f.key}`}>{f.label}</label>
       {f.type === 'textarea' ? (

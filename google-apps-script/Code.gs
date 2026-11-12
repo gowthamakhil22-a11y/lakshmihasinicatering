@@ -52,7 +52,7 @@ var SHEETS = {
 var PUBLIC_SETTINGS = [
   'business_name', 'whatsapp_number', 'phone_number', 'email', 'location',
   'maps_url', 'tagline', 'business_description',
-  'trust_line', 'testimonial', 'testimonial_by',
+  'trust_line', 'testimonial', 'testimonial_by', 'qr_target',
 ];
 
 var ACTIVE_VALUES = ['active', 'yes', 'true', '1', 'live', 'available', ''];
