@@ -1,8 +1,15 @@
 import { formatCurrency, formatUnit } from '../utils/formatCurrency.js';
 
-/** Keep digits only. "+91 98480-12345" → "919848012345". */
+/**
+ * Keep digits only and make sure there is a country code.
+ * "+91 98480-12345" → "919848012345"; a bare Indian mobile "9848012345" → "919848012345";
+ * "09848012345" → "919848012345".
+ */
 export function sanitizeWhatsAppNumber(number) {
-  return String(number ?? '').replace(/\D/g, '');
+  let d = String(number ?? '').replace(/\D/g, '');
+  if (/^0[6-9]\d{9}$/.test(d)) d = d.slice(1);
+  if (/^[6-9]\d{9}$/.test(d)) d = `91${d}`;
+  return d;
 }
 
 export function isValidWhatsAppNumber(number) {

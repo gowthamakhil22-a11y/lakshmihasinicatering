@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowUpRight, Eye, EyeOff, LayoutList, LogOut, Package, Plus, Search, Star, Store, UtensilsCrossed, X } from 'lucide-react';
 import { BrandMark } from '../components/BrandMark.jsx';
 import { AdminError, adminCall, readSession, writeSession } from './adminApi.js';
+import { sanitizeWhatsAppNumber } from '../services/whatsappService.js';
 import styles from './Admin.module.css';
 
 /* ---------- what each table looks like in the editor ---------- */
@@ -60,7 +61,7 @@ const SETTINGS = [
   { key: 'business_name', label: 'Business name' },
   { key: 'tagline', label: 'Tagline', hint: 'Short line under the name on the cover.' },
   { key: 'business_description', label: 'About the business', type: 'textarea' },
-  { key: 'whatsapp_number', label: 'WhatsApp number', hint: 'Country code + number, digits only. Example: 919876543210', inputMode: 'numeric', check: (v) => !v || /^\d{10,15}$/.test(v) || 'Digits only, with country code (e.g. 91…).' },
+  { key: 'whatsapp_number', label: 'WhatsApp number', hint: 'Country code + number, digits only. Example: 919876543210', inputMode: 'numeric', check: (v) => !v || /^\+?[\d\s-]{10,18}$/.test(v) || 'Numbers only, e.g. 919876543210.' },
   { key: 'phone_number', label: 'Phone number', hint: 'As it should be shown, e.g. +91 98765 43210', inputMode: 'tel' },
   { key: 'email', label: 'Email', inputMode: 'email' },
   { key: 'location', label: 'Address', type: 'textarea' },
@@ -507,7 +508,7 @@ function SettingsView({ data, onSaveMany, busy }) {
     },
   ];
   const byKey = Object.fromEntries(SETTINGS.map((f) => [f.key, f]));
-  const wa = String(draft.whatsapp_number || '').replace(/\D/g, '');
+  const wa = sanitizeWhatsAppNumber(draft.whatsapp_number);
   const missing = ['whatsapp_number', 'phone_number'].filter((k) => !String(draft[k] || '').trim());
 
   const field = (f) => (
