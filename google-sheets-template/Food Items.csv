@@ -1,0 +1,35 @@
+item_id,item_name,category_id,description,price,price_unit,image_url,featured,display_order,status,food_type,item_name_te,description_te
+BF01,Idli with Sambar and Chutney,breakfast,"Soft steamed idlis with coconut chutney, tomato chutney and hot sambar.",40,per plate,,yes,1,active,veg,ఇడ్లీ సాంబార్ చట్నీ,"మెత్తని ఆవిరి ఇడ్లీలు, కొబ్బరి చట్నీ, టమాటా చట్నీ మరియు వేడి సాంబార్‌తో."
+BF02,Masala Dosa,breakfast,"Crisp dosa filled with spiced potato masala, served with chutneys and sambar.",60,per plate,,yes,2,active,veg,మసాలా దోసె,"కరకరలాడే దోసెలో మసాలా ఆలూ కూర, చట్నీలు మరియు సాంబార్‌తో."
+BF03,Pesarattu Upma,breakfast,"Andhra style green gram dosa folded over soft upma, with ginger chutney.",65,per plate,,,3,active,veg,పెసరట్టు ఉప్మా,"ఉప్మా నింపిన ఆంధ్ర స్టైల్ పెసరట్టు, అల్లం చట్నీతో."
+BF04,Poori with Potato Curry,breakfast,Fluffy pooris served with a mild potato and onion curry.,55,per plate,,,4,active,veg,పూరీ ఆలూ కూర,"మెత్తటి పూరీలు, ఉల్లిపాయ ఆలూ కూరతో."
+BF05,Vada with Sambar,breakfast,"Golden medu vadas soaked in sambar, with coconut chutney.",45,per plate,,,5,active,veg,సాంబార్ వడ,"సాంబార్‌లో నానబెట్టిన బంగారు రంగు గారెలు, కొబ్బరి చట్నీతో."
+LU01,Andhra Veg Meals,lunch,"Rice, pappu, two curries, sambar, rasam, curd, pickle, papad and a sweet on banana leaf.",180,per plate,,yes,1,active,veg,ఆంధ్ర వెజ్ భోజనం,"అరిటాకుపై అన్నం, పప్పు, రెండు కూరలు, సాంబార్, రసం, పెరుగు, పచ్చడి, అప్పడం మరియు స్వీట్."
+LU02,Pulihora,lunch,"Tangy tamarind rice tempered with peanuts, curry leaves and chillies.",60,per plate,,,2,active,veg,పులిహోర,"వేరుశనగ, కరివేపాకు, మిరపకాయల తాలింపుతో పుల్లని చింతపండు పులిహోర."
+LU03,Tomato Pappu,lunch,Toor dal cooked with tomatoes and finished with a ghee tadka.,50,per plate,,,3,active,veg,టమాటా పప్పు,"టమాటాలతో వండిన కందిపప్పు, నెయ్యి తాలింపుతో."
+LU04,Gongura Chicken Curry,lunch,"Chicken cooked in a spicy, sour gongura leaf masala.",160,per plate,,,4,active,non-veg,గోంగూర చికెన్ కూర,"కారంగా, పుల్లగా ఉండే గోంగూర మసాలాలో వండిన చికెన్."
+LU05,Curd Rice,lunch,"Creamy curd rice tempered with mustard, curry leaves and pomegranate.",45,per plate,,,5,active,veg,పెరుగన్నం,"ఆవాలు, కరివేపాకు తాలింపు మరియు దానిమ్మ గింజలతో మెత్తని పెరుగన్నం."
+DI01,Hyderabadi Veg Dum Biryani,dinner,Long grain basmati layered with vegetables and slow cooked on dum. Served with raita and salan.,150,per plate,,yes,1,active,veg,హైదరాబాదీ వెజ్ దమ్ బిర్యానీ,"కూరగాయలతో పొరలుగా దమ్‌పై వండిన బాస్మతి బిర్యానీ, రైతా మరియు సాలన్‌తో."
+DI02,Chicken Dum Biryani,dinner,"Marinated chicken and fragrant basmati cooked on dum, with raita and mirchi ka salan.",200,per plate,,yes,2,active,non-veg,చికెన్ దమ్ బిర్యానీ,"మసాలా పట్టించిన చికెన్, సువాసన బాస్మతితో దమ్ బిర్యానీ, రైతా మరియు మిర్చి కా సాలన్‌తో."
+DI03,Mutton Biryani,dinner,Tender mutton pieces layered with saffron rice and cooked on dum.,,per plate,,,3,active,non-veg,మటన్ బిర్యానీ,మెత్తటి మటన్ ముక్కలు కుంకుమపువ్వు అన్నంతో పొరలుగా దమ్‌పై వండినది.
+DI04,Paneer Butter Masala,dinner,Paneer cubes in a smooth tomato and cashew gravy finished with butter.,140,per plate,,,4,active,veg,పనీర్ బటర్ మసాలా,"టమాటా, జీడిపప్పు గ్రేవీలో పనీర్ ముక్కలు, వెన్నతో."
+DI05,Butter Naan,dinner,Soft tandoor baked naan brushed with butter.,35,per piece,,,5,active,veg,బటర్ నాన్,తందూర్‌లో కాల్చి వెన్న పూసిన మెత్తని నాన్.
+SN01,Samosa,snacks,"Crisp pastry stuffed with spiced potato and peas, with mint chutney.",20,per piece,,,1,active,veg,సమోసా,"మసాలా ఆలూ, బఠాణీ నింపిన కరకరలాడే సమోసా, పుదీనా చట్నీతో."
+SN02,Mirchi Bajji,snacks,"Long green chillies dipped in gram flour batter and fried, topped with onion.",25,per piece,,yes,2,active,veg,మిర్చి బజ్జీ,"శనగపిండిలో ముంచి వేయించిన పొడవాటి పచ్చిమిర్చి, పైన ఉల్లిపాయలతో."
+SN03,Pav Bhaji,snacks,"Buttery mixed vegetable bhaji with toasted pav, onion and lemon.",80,per plate,,,3,active,veg,పావ్ భాజీ,"వెన్నతో కూరగాయల భాజీ, కాల్చిన పావ్, ఉల్లిపాయ మరియు నిమ్మకాయతో."
+SN04,Papdi Chaat,snacks,"Crisp papdi with potato, curd, sweet and green chutneys and sev.",60,per plate,,,4,active,veg,పాప్డీ చాట్,"కరకరలాడే పాప్డీపై ఆలూ, పెరుగు, తీపి మరియు పచ్చి చట్నీలు, సేవ్."
+SW01,Double ka Meetha,sweets,Hyderabadi bread pudding soaked in saffron milk and topped with dry fruits.,50,per plate,,yes,1,active,veg,డబుల్ కా మీఠా,"కుంకుమపువ్వు పాలలో నానబెట్టిన హైదరాబాదీ బ్రెడ్ స్వీట్, డ్రై ఫ్రూట్స్‌తో."
+SW02,Gulab Jamun,sweets,Soft khoya dumplings soaked in rose cardamom syrup.,20,per piece,,,2,active,veg,గులాబ్ జామూన్,"గులాబీ, యాలకుల పాకంలో నానిన మెత్తని కోవా జామూన్లు."
+SW03,Pootharekulu,sweets,"Paper thin rice sheets layered with ghee, sugar and dry fruits. A Godavari speciality.",40,per piece,,yes,3,active,veg,పూతరేకులు,"నెయ్యి, చక్కెర, డ్రై ఫ్రూట్స్‌తో చుట్టిన పలుచని పూతరేకులు. గోదావరి ప్రత్యేకత."
+SW04,Bobbatlu,sweets,"Sweet flatbread filled with chana dal and jaggery, served with ghee.",35,per piece,,,4,active,veg,బొబ్బట్లు,"శనగపప్పు, బెల్లం పూర్ణం నింపిన తీపి బొబ్బట్లు, నెయ్యితో."
+BV01,Filter Coffee,beverages,Strong South Indian decoction coffee with frothy milk.,25,per cup,,,1,active,veg,ఫిల్టర్ కాఫీ,నురుగు పాలతో చిక్కని దక్షిణ భారత డికాక్షన్ కాఫీ.
+BV02,Masala Chai,beverages,"Tea brewed with milk, ginger and cardamom.",20,per cup,,,2,active,veg,మసాలా టీ,"అల్లం, యాలకులతో పాలలో మరిగించిన టీ."
+BV03,Buttermilk,beverages,"Spiced majjiga with ginger, green chilli and coriander.",20,per glass,,,3,active,veg,మజ్జిగ,"అల్లం, పచ్చిమిర్చి, కొత్తిమీరతో మసాలా మజ్జిగ."
+BV04,Mango Lassi,beverages,Thick yoghurt drink blended with ripe mango.,50,per glass,,,4,active,veg,మామిడి లస్సీ,పండిన మామిడితో చిలికిన చిక్కని పెరుగు పానీయం.
+ST01,Paneer Tikka,starters,Paneer and peppers marinated in spiced yoghurt and grilled.,120,per plate,,yes,1,active,veg,పనీర్ టిక్కా,మసాలా పెరుగులో నానబెట్టి కాల్చిన పనీర్ మరియు క్యాప్సికం.
+ST02,Gobi Manchurian,starters,Crispy cauliflower tossed in a tangy Indo Chinese sauce.,90,per plate,,,2,active,veg,గోబీ మంచూరియా,పుల్లని ఇండో-చైనీస్ సాస్‌లో వేయించిన కరకరలాడే క్యాలీఫ్లవర్.
+ST03,Chicken 65,starters,Spicy deep fried chicken tossed with curry leaves and green chillies.,150,per plate,,,3,active,non-veg,చికెన్ 65,"కరివేపాకు, పచ్చిమిర్చితో వేయించిన కారమైన చికెన్."
+ST04,Apollo Fish,starters,Boneless fish fried and tossed in a spicy yoghurt masala.,,per plate,,,4,active,non-veg,అపోలో ఫిష్,ముళ్ళు లేని చేప ముక్కలు వేయించి కారమైన పెరుగు మసాలాలో కలిపినవి.
+DS01,Qubani ka Meetha,desserts,Stewed apricot dessert served with fresh cream.,70,per bowl,,,1,active,veg,ఖుబానీ కా మీఠా,"ఉడికించిన ఆప్రికాట్ స్వీట్, తాజా క్రీమ్‌తో."
+DS02,Vanilla Ice Cream,desserts,Classic vanilla ice cream scoop.,30,per scoop,,,2,active,veg,వెనిల్లా ఐస్ క్రీమ్,క్లాసిక్ వెనిల్లా ఐస్ క్రీమ్ స్కూప్.
+DS03,Semiya Payasam,desserts,"Vermicelli cooked in milk with cardamom, cashews and raisins.",40,per bowl,,,3,active,veg,సేమియా పాయసం,"యాలకులు, జీడిపప్పు, కిస్మిస్‌తో పాలలో వండిన సేమియా పాయసం."

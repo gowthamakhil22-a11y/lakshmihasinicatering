@@ -1,0 +1,68 @@
+# Builds the menu and publishes it to GitHub Pages on every push to main.
+# One-time setup on github.com: Settings → Pages → Source: "GitHub Actions".
+name: Deploy menu to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Site address: https://<user>.github.io/<repo>/  (or the root for a <user>.github.io repo).
+      # A custom domain can be set as the repository variable SITE_URL (then BASE_PATH is "/").
+      - name: Work out the site address
+        id: site
+        run: |
+          OWNER="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          if [ -n "${{ vars.SITE_URL }}" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+            echo "url=${{ vars.SITE_URL }}" >> "$GITHUB_OUTPUT"
+          elif [ "$REPO" = "${OWNER,,}.github.io" ]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+            echo "url=https://${OWNER,,}.github.io/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO/" >> "$GITHUB_OUTPUT"
+            echo "url=https://${OWNER,,}.github.io/$REPO/" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The Google Sheet link comes from .env in the repository.
+      - run: npm run build
+        env:
+          BASE_PATH: ${{ steps.site.outputs.base }}
+          VITE_SITE_URL: ${{ steps.site.outputs.url }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

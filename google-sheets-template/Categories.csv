@@ -1,0 +1,9 @@
+category_id,category_name,category_description,category_image,display_order,status,category_name_te,category_description_te
+breakfast,Breakfast,Tiffins served hot with chutneys and sambar,,1,active,అల్పాహారం,"చట్నీలు, సాంబార్‌తో వేడి వేడి టిఫిన్లు"
+lunch,Lunch,"Rice, curries and complete meals",,2,active,మధ్యాహ్న భోజనం,"అన్నం, కూరలు, పూర్తి భోజనం"
+dinner,Dinner,"Rich gravies, biryanis and breads",,3,active,రాత్రి భోజనం,"ఘుమఘుమలాడే కూరలు, బిర్యానీలు, రొట్టెలు"
+snacks,Snacks,Evening bites and chaat,,4,active,చిరుతిళ్ళు,"సాయంత్రం చిరుతిళ్ళు, చాట్"
+sweets,Sweets,Traditional sweets for every celebration,,5,active,మిఠాయిలు,ప్రతి వేడుకకూ సంప్రదాయ మిఠాయిలు
+beverages,Beverages,Hot and cool drinks,,6,active,పానీయాలు,"వేడి, చల్లని పానీయాలు"
+starters,Starters,To begin the celebration,,7,active,స్టార్టర్స్,వేడుక ప్రారంభానికి
+desserts,Desserts,A sweet finish,,8,active,డెజర్ట్స్,తీపి ముగింపు

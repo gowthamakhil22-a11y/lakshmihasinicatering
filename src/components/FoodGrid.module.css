@@ -1,0 +1,279 @@
+.section {
+  padding-top: var(--s-700);
+}
+.head {
+  margin-bottom: var(--s-400);
+}
+
+/* Sticky toolbar: follows the header as it hides and reappears */
+.toolbar {
+  position: sticky;
+  top: calc(var(--header-h) + var(--s-200));
+  z-index: var(--z-sticky);
+  margin-inline: calc(-1 * var(--gutter));
+  padding: var(--s-100) var(--gutter);
+  background: rgba(251, 246, 234, 0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: transform var(--d-slow) var(--ease-out);
+}
+@media (min-width: 768px) {
+  .toolbar { top: calc(var(--header-h) + var(--s-200)); }
+}
+:global(body.header-hidden) .toolbar {
+  transform: translateY(calc(-1 * (var(--header-h) + var(--s-200))));
+}
+.toolbarInner {
+  display: grid;
+  gap: var(--s-100);
+}
+@media (min-width: 1024px) {
+  .toolbarInner {
+    grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--s-300);
+  }
+  .toolbarInner > :last-child { order: -1; }
+}
+.searchRow {
+  display: flex;
+  gap: var(--s-75);
+  min-width: 0;
+}
+
+.search {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  position: absolute;
+  left: var(--s-200);
+  color: var(--ink-soft);
+  pointer-events: none;
+  transition: color var(--d-base) var(--ease-out);
+}
+.search input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--s-500) 0 var(--s-500);
+  border-radius: var(--r-full);
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--ink);
+  transition:
+    border-color var(--d-base) var(--ease-out),
+    box-shadow var(--d-base) var(--ease-out);
+}
+.search input::placeholder {
+  color: var(--ink-soft);
+}
+.search input::-webkit-search-cancel-button {
+  display: none;
+}
+.search input:focus {
+  outline: none;
+  border-color: var(--green-900);
+  box-shadow: 0 0 0 4px rgba(15, 74, 46, 0.08);
+}
+.search:focus-within .searchIcon {
+  color: var(--green-900);
+}
+.clear {
+  position: absolute;
+  right: var(--s-75);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-full);
+  color: var(--ink-muted);
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+  transition:
+    opacity var(--d-base) var(--ease-out),
+    transform var(--d-slow) var(--ease-spring),
+    background-color var(--d-base) var(--ease-out);
+}
+.clearOn {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.clear:hover {
+  background: var(--sage);
+}
+
+.vegToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-75);
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 var(--s-200) 0 var(--s-100);
+  border-radius: var(--r-full);
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  transition:
+    border-color var(--d-base) var(--ease-out),
+    color var(--d-base) var(--ease-out),
+    background-color var(--d-base) var(--ease-out);
+}
+.vegToggle > svg {
+  display: none;
+}
+@media (min-width: 420px) {
+  .vegToggle > svg { display: block; }
+}
+.vegToggle:hover {
+  border-color: var(--veg);
+}
+.vegOn {
+  border-color: var(--veg);
+  color: var(--veg);
+  background: #f1f7f0;
+}
+.switch {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border-radius: var(--r-full);
+  background: var(--line-strong);
+  transition: background-color var(--d-base) var(--ease-out);
+}
+.switch span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--r-full);
+  background: var(--white);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--d-slow) var(--ease-spring);
+}
+.vegOn .switch {
+  background: var(--veg);
+}
+.vegOn .switch span {
+  transform: translateX(12px);
+}
+
+.resultCount {
+  margin: var(--s-300) 0 var(--s-200);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-soft);
+}
+
+.groups {
+  display: grid;
+  gap: var(--s-700);
+}
+.group {
+  display: grid;
+  gap: var(--s-300);
+  scroll-margin-top: 200px;
+}
+.groupHead {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: var(--s-25) var(--s-200);
+}
+.groupHead p {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: var(--ink-muted);
+}
+.groupRule {
+  height: 1px;
+  background: var(--line-strong);
+  align-self: center;
+  transform-origin: left;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-200);
+}
+@media (min-width: 560px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-300); }
+}
+
+.state {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-100);
+  max-width: 520px;
+  margin: var(--s-400) auto;
+  padding: var(--s-600) var(--s-300);
+  text-align: center;
+  border-radius: var(--r-2xl);
+  border: 1px dashed var(--line-strong);
+  background: var(--white);
+  animation: fade-up 600ms var(--ease-out) backwards;
+}
+.state p {
+  color: var(--ink-muted);
+}
+.stateIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--s-100);
+  border-radius: var(--r-full);
+  background: var(--sage);
+  color: var(--green-900);
+}
+.stateError {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.stateActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-100);
+  margin-top: var(--s-200);
+}
+
+.skeletonChips {
+  display: flex;
+  gap: var(--s-75);
+  overflow: hidden;
+  margin-bottom: var(--s-300);
+}
+.skeletonChips > * {
+  flex-shrink: 0;
+}
+.skeletonCard {
+  display: grid;
+  gap: var(--s-100);
+  padding: var(--s-300);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+.skeletonFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--s-100);
+  padding-top: var(--s-200);
+  border-top: 1px dashed var(--line);
+}

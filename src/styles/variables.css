@@ -1,0 +1,87 @@
+:root {
+  /* Brand colours */
+  --green-900: #0f4a2e; /* emerald from the visiting card */
+  --green-800: #145a38;
+  --green-700: #1f6b45;
+  --green-100: #dbe7dc;
+  --ivory: #fbf6ea; /* warm cream */
+  --ivory-200: #f4ecd9;
+  --gold: #c29a45; /* card gold */
+  --gold-600: #a8802f;
+  --gold-700: #8a6420; /* gold for text on light surfaces (AA contrast) */
+  --gold-100: #f5e8c8;
+  --ink: #1f3328;
+  --ink-muted: #4f5f55;
+  --ink-soft: #6c7a71;
+  --sage: #eef0e2;
+  --white: #ffffff;
+  --danger: #a33a2a;
+  --danger-bg: #fbeeeb;
+  --cream-card: #fffbf1;
+  --gold-gradient: linear-gradient(135deg, #d9b45c 0%, #c29a45 45%, #a8802f 100%);
+  --veg: #2f7d3b;
+  --nonveg: #a33a2a;
+  --whatsapp: #1f8f4e;
+
+  --line: rgba(15, 74, 46, 0.12);
+  --line-strong: rgba(15, 74, 46, 0.22);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', 'Noto Serif Telugu', Georgia, 'Times New Roman', serif;
+  --font-book: 'EB Garamond', 'Noto Serif Telugu', Georgia, 'Times New Roman', serif;
+  --font-caps: 'Cormorant SC', 'Cormorant Garamond', 'Noto Serif Telugu', Georgia, serif;
+  --font-body: 'DM Sans', 'Noto Serif Telugu', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Spacing scale */
+  --s-25: 2px;
+  --s-50: 4px;
+  --s-75: 8px;
+  --s-100: 12px;
+  --s-200: 16px;
+  --s-300: 24px;
+  --s-400: 32px;
+  --s-500: 40px;
+  --s-600: 48px;
+  --s-700: 64px;
+  --s-800: 80px;
+  --s-900: 96px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-2xl: 24px;
+  --r-full: 999px;
+
+  /* Elevation */
+  --shadow-xs: 0 1px 2px rgba(15, 74, 46, 0.06);
+  --shadow-sm: 0 2px 8px rgba(15, 74, 46, 0.06), 0 1px 2px rgba(15, 74, 46, 0.04);
+  --shadow-md: 0 12px 32px -12px rgba(15, 74, 46, 0.18), 0 2px 6px rgba(15, 74, 46, 0.05);
+  --shadow-lg: 0 32px 64px -24px rgba(15, 74, 46, 0.32), 0 4px 12px rgba(15, 74, 46, 0.06);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --d-fast: 200ms;
+  --d-base: 300ms;
+  --d-slow: 500ms;
+  --d-reveal: 700ms;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 16px;
+  --header-h: 64px;
+  --z-header: 50;
+  --z-sticky: 40;
+  --z-overlay: 80;
+  --z-toast: 100;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+    --header-h: 72px;
+  }
+}

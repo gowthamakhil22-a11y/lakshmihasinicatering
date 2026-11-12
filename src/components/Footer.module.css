@@ -1,0 +1,245 @@
+.contact {
+  padding-bottom: var(--s-700);
+}
+.card {
+  display: grid;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--cream-card);
+  border: 1px solid rgba(194, 154, 69, 0.4);
+  box-shadow: var(--shadow-lg);
+}
+@media (min-width: 900px) {
+  .card { grid-template-columns: 0.9fr 1.1fr; }
+}
+.panel {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  align-content: center;
+  gap: var(--s-200);
+  padding: var(--s-500) var(--s-300);
+  background: var(--green-900);
+  color: var(--ivory);
+  overflow: hidden;
+  isolation: isolate;
+}
+@media (min-width: 900px) {
+  .panel {
+    padding: var(--s-700) var(--s-600);
+    border-radius: 0 160px 160px 0 / 0 50% 50% 0;
+  }
+  /* Gold keyline following the curved edge, like the card */
+  .panel::after {
+    content: '';
+    position: absolute;
+    inset: -2px 10px -2px -2px;
+    border: 2px solid var(--gold);
+    border-left: 0;
+    border-radius: 0 150px 150px 0 / 0 50% 50% 0;
+    pointer-events: none;
+  }
+}
+.lotus {
+  position: absolute;
+  z-index: -1;
+  right: -60px;
+  bottom: -60px;
+  width: 240px;
+  height: 240px;
+  color: var(--gold);
+  opacity: 0.12;
+}
+.panel :global(.eyebrow) {
+  color: var(--gold);
+}
+.panelMark {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--r-full);
+  background: var(--cream-card);
+  border: 1.5px solid var(--gold);
+}
+.panelTitle {
+  color: var(--ivory);
+  max-width: 420px;
+}
+.flourish {
+  margin-block: calc(-1 * var(--s-75));
+}
+.panelText {
+  color: rgba(251, 246, 234, 0.8);
+}
+
+.details {
+  display: grid;
+  align-content: center;
+  gap: var(--s-400);
+  padding: var(--s-400) var(--s-300);
+}
+@media (min-width: 900px) {
+  .details { padding: var(--s-600) var(--s-600) var(--s-600) var(--s-500); }
+}
+.occasions {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--s-300);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  gap: var(--s-200) var(--s-75);
+  border-bottom: 1px solid rgba(194, 154, 69, 0.45);
+}
+.occasions li {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-75);
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.occIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--gold-700);
+  transition: transform var(--d-slow) var(--ease-spring);
+}
+.occasions li:hover .occIcon {
+  transform: translateY(-4px) scale(1.08);
+}
+.contactList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-200);
+}
+.contactList li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-200);
+  min-width: 0;
+}
+.tile {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+  background: var(--green-900);
+  color: var(--ivory);
+  transition: transform var(--d-slow) var(--ease-spring), background-color var(--d-base) var(--ease-out);
+}
+.contactList li:hover .tile {
+  transform: rotate(-8deg);
+  background: var(--gold-600);
+}
+.contactList a {
+  display: grid;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: var(--green-900);
+  text-decoration: none;
+  border-radius: var(--r-sm);
+}
+.contactList a:hover {
+  color: var(--gold-700);
+}
+.k {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.wrap {
+  overflow-wrap: anywhere;
+}
+
+.footer {
+  padding-block: var(--s-500) var(--s-400);
+  background: var(--green-900);
+  color: rgba(251, 246, 234, 0.8);
+}
+:global(body.has-cart-bar) .footer {
+  padding-bottom: calc(var(--s-400) + 88px);
+}
+@media (min-width: 1024px) {
+  :global(body.has-cart-bar) .footer { padding-bottom: var(--s-400); }
+}
+.footerInner {
+  display: grid;
+  gap: var(--s-300);
+  padding-bottom: var(--s-300);
+  border-bottom: 1px solid rgba(194, 154, 69, 0.35);
+}
+@media (min-width: 768px) {
+  .footerInner { grid-template-columns: 1fr auto; align-items: center; }
+}
+.brand {
+  display: flex;
+  gap: var(--s-200);
+  align-items: flex-start;
+}
+.brandMark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-full);
+  background: var(--cream-card);
+  border: 1.5px solid var(--gold);
+}
+.brandName {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--ivory);
+}
+.brandDesc {
+  max-width: 440px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-50) var(--s-100);
+}
+.links a {
+  display: inline-block;
+  padding: var(--s-50) var(--s-100);
+  border-radius: var(--r-full);
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: none;
+  transition: color var(--d-base) var(--ease-out), background-color var(--d-base) var(--ease-out);
+}
+.links a:hover {
+  color: var(--gold);
+  background: rgba(251, 246, 234, 0.06);
+}
+.legal {
+  display: grid;
+  gap: var(--s-75);
+  padding-top: var(--s-300);
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(251, 246, 234, 0.6);
+}
+@media (min-width: 768px) {
+  .legal { grid-template-columns: auto 1fr; justify-items: end; }
+}

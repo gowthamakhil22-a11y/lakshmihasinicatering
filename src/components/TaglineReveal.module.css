@@ -1,0 +1,33 @@
+.section {
+  background: var(--green-900);
+  color: var(--ivory);
+}
+.eyebrow {
+  margin-bottom: var(--s-300);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.text {
+  max-width: 900px;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 36px;
+  text-wrap: balance;
+}
+@media (min-width: 768px) {
+  .text { font-size: 36px; line-height: 44px; }
+}
+@media (min-width: 1024px) {
+  .text { font-size: 48px; line-height: 1.15; }
+}
+.word {
+  color: rgba(251, 246, 234, 0.28);
+  transition: color 600ms var(--ease-out);
+}
+.on {
+  color: var(--ivory);
+}

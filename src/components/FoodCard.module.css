@@ -1,0 +1,254 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-75);
+  min-width: 0;
+  padding: var(--s-300);
+  border-radius: var(--r-xl);
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-xs);
+  animation: card-in 600ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i) * 45ms);
+  transition:
+    transform var(--d-slow) var(--ease-out),
+    box-shadow var(--d-slow) var(--ease-out),
+    border-color var(--d-base) var(--ease-out),
+    background-color var(--d-base) var(--ease-out);
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-strong);
+}
+.selected {
+  background: var(--cream-card);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), var(--shadow-sm);
+}
+.selected:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), var(--shadow-md);
+}
+
+.check {
+  position: absolute;
+  top: var(--s-200);
+  right: var(--s-200);
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--r-full);
+  background: var(--gold);
+  color: var(--white);
+  opacity: 0;
+  transform: scale(0.3) rotate(-45deg);
+  transition:
+    opacity var(--d-base) var(--ease-out),
+    transform var(--d-slow) var(--ease-spring);
+}
+.selected .check {
+  opacity: 1;
+  transform: none;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-75);
+  min-height: 24px;
+  padding-right: var(--s-400);
+}
+.diet {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+}
+.dietMark {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-full);
+  background: currentColor;
+}
+.veg { color: var(--veg); }
+.nonveg { color: var(--nonveg); }
+.nonveg .dietMark {
+  border-radius: 0;
+  width: 0;
+  height: 0;
+  background: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid currentColor;
+}
+.egg { color: var(--gold-600); }
+
+.category {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.featured {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-50);
+  padding: var(--s-25) var(--s-75);
+  border-radius: var(--r-full);
+  background: var(--gold-100);
+  color: var(--gold-700);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--green-900);
+  text-wrap: balance;
+}
+.desc {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-100);
+  margin-top: auto;
+  padding-top: var(--s-200);
+  border-top: 1px dashed var(--line-strong);
+}
+.card > .desc + .footer,
+.card > .name + .footer {
+  margin-top: auto;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-50);
+  min-width: 0;
+}
+.amount {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--green-900);
+  font-variant-numeric: tabular-nums;
+}
+.unit {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-soft);
+}
+.onRequest {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--gold-700);
+}
+
+/* Add button morphs into the stepper */
+.action {
+  display: grid;
+  justify-items: end;
+  margin-left: auto;
+}
+.action > * {
+  grid-area: 1 / 1;
+}
+.add {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-50);
+  height: 40px;
+  padding: 0 var(--s-200);
+  border-radius: var(--r-full);
+  border: 1px solid var(--green-900);
+  color: var(--green-900);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  transition:
+    background-color var(--d-base) var(--ease-out),
+    color var(--d-base) var(--ease-out),
+    opacity var(--d-base) var(--ease-out),
+    transform var(--d-slow) var(--ease-out);
+}
+.add svg {
+  transition: transform var(--d-slow) var(--ease-out);
+}
+.add:hover {
+  background: var(--green-900);
+  color: var(--ivory);
+}
+.add:hover svg {
+  transform: rotate(90deg);
+}
+.add:active {
+  transform: scale(0.95);
+}
+.stepperWrap {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  transition:
+    opacity var(--d-base) var(--ease-out),
+    transform var(--d-slow) var(--ease-spring);
+}
+.action[data-selected='true'] .add {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+.action[data-selected='true'] .stepperWrap {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Optional photo (shown only when the sheet provides image_url) */
+.media {
+  margin: calc(-1 * var(--s-300)) calc(-1 * var(--s-300)) var(--s-100);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  overflow: hidden;
+}
+.image {
+  aspect-ratio: 4 / 3;
+}
+.image img {
+  transition: transform 900ms var(--ease-out), opacity 600ms var(--ease-out);
+}
+.card:hover .image img {
+  transform: scale(1.06);
+}
+.hasImage .check {
+  top: var(--s-100);
+  right: var(--s-100);
+  width: 32px;
+  height: 32px;
+  box-shadow: var(--shadow-md);
+}

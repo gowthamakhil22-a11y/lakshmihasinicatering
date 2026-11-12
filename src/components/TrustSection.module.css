@@ -1,0 +1,95 @@
+.marquee {
+  overflow: hidden;
+  padding-block: var(--s-200);
+  background: var(--green-900);
+  color: var(--ivory);
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+.group {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.group li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-400);
+  padding-right: var(--s-400);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+.star {
+  color: var(--gold);
+  font-size: 12px;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
+
+.section {
+  padding-block: var(--s-700);
+}
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-200);
+}
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-300); }
+}
+.item {
+  display: grid;
+  align-content: start;
+  gap: var(--s-100);
+  padding: var(--s-300);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: var(--white);
+  transition:
+    transform var(--d-slow) var(--ease-out),
+    box-shadow var(--d-slow) var(--ease-out),
+    border-color var(--d-slow) var(--ease-out);
+}
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+.item p {
+  color: var(--ink-muted);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--s-75);
+  border-radius: var(--r-full);
+  background: var(--gold-100);
+  color: var(--gold-700);
+  transition: transform var(--d-slow) var(--ease-spring), background-color var(--d-base) var(--ease-out), color var(--d-base) var(--ease-out);
+}
+.item:hover .icon {
+  transform: rotate(-10deg) scale(1.08);
+  background: var(--green-900);
+  color: var(--gold-100);
+}
+.title {
+  font-family: var(--font-heading);
+  color: var(--green-900);
+}

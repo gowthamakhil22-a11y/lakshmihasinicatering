@@ -1,0 +1,94 @@
+.wrap {
+  position: relative;
+  min-width: 0;
+}
+.wrap::before,
+.wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 2;
+  pointer-events: none;
+}
+.wrap::before { left: 0; background: linear-gradient(90deg, var(--ivory), transparent); }
+.wrap::after { right: 0; background: linear-gradient(-90deg, var(--ivory), transparent); }
+
+.scroller {
+  position: relative;
+  display: flex;
+  gap: var(--s-50);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: var(--s-50) var(--s-200);
+  margin-inline: calc(-1 * var(--s-200));
+  scroll-padding-inline: var(--s-300);
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+.indicator {
+  position: absolute;
+  top: var(--s-50);
+  left: 0;
+  height: 40px;
+  border-radius: var(--r-full);
+  background: var(--green-900);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  z-index: 0;
+}
+.ready {
+  opacity: 1;
+  transition:
+    transform var(--d-slow) var(--ease-out),
+    width var(--d-slow) var(--ease-out),
+    opacity var(--d-base) var(--ease-out);
+}
+.chip {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-75);
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 var(--s-200);
+  border-radius: var(--r-full);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition:
+    color var(--d-base) var(--ease-out),
+    background-color var(--d-base) var(--ease-out),
+    transform var(--d-base) var(--ease-out);
+}
+.chip:hover:not(.selected) {
+  color: var(--green-900);
+  background: var(--sage);
+}
+.chip:active {
+  transform: scale(0.96);
+}
+.selected {
+  color: var(--ivory);
+}
+.count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-full);
+  background: rgba(15, 74, 46, 0.08);
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--d-base) var(--ease-out), color var(--d-base) var(--ease-out);
+}
+.selected .count {
+  background: rgba(251, 246, 234, 0.18);
+  color: var(--gold-100);
+}
