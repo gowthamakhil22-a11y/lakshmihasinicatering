@@ -49,8 +49,8 @@
     if (/^https?:\/\/[^\s]+\.[^\s]+/i.test(t)) return t;
     return MENU;
   }
-  // Never leave a guest waiting: fall back to the menu after 3.5 s.
-  setTimeout(function () { go(MENU); }, 3500);
+  // Never leave a guest waiting: fall back to the menu after 6 s (Apps Script can take ~3 s when idle).
+  setTimeout(function () { go(MENU); }, 6000);
   if (!API) return go(MENU);
   try {
     fetch(API, { cache: 'no-store', redirect: 'follow' })
