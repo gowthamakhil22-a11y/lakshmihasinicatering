@@ -24,7 +24,7 @@ export const appConfig = {
     email: 'lakshmihasinicatering@gmail.com',
     location: 'Main Road, Danavaipeta, Rajahmundry, Andhra Pradesh 533101',
     // Optional Google Maps link for the address. Leave empty to search the address instead.
-    mapsUrl: '',
+    mapsUrl: 'https://maps.app.goo.gl/BDQDWeJNAxYeVQbr6',
     // Optional. Only real facts, e.g. 'Serving Rajahmundry since 2012 · 400+ weddings'.
     // Shown on the book cover when filled. The sheet setting 'trust_line' overrides it.
     trustLine: '',
