@@ -7,6 +7,19 @@ import react from '@vitejs/plugin-react';
  * Static hosts (GitHub Pages) only serve real files, so give /admin its own
  * index.html. It is the same app; App.jsx shows the admin screen on that path.
  */
+/**
+ * Backup Google Maps link baked into /go, used when the menu sheet cannot be
+ * reached. Taken from appConfig.js: business.mapsUrl, or a search for the address.
+ */
+function fallbackMapsUrl() {
+  const src = readFileSync(resolve(__dirname, 'src/config/appConfig.js'), 'utf8');
+  const get = (key) => src.match(new RegExp(`${key}:\\s*'([^']*)'`))?.[1] || '';
+  const maps = get('mapsUrl');
+  if (/^https:\/\//.test(maps)) return maps.replace(/'/g, '%27');
+  const addr = get('location') || get('name');
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
+}
+
 function extraPages(base, apiUrl) {
   return {
     name: 'extra-pages',
@@ -21,7 +34,8 @@ function extraPages(base, apiUrl) {
       mkdirSync(resolve(out, 'go'), { recursive: true });
       const html = readFileSync(resolve(__dirname, 'build-templates/go.html'), 'utf8')
         .replaceAll('__BASE__', base)
-        .replaceAll('__API__', apiUrl.replace(/'/g, ''));
+        .replaceAll('__API__', apiUrl.replace(/'/g, ''))
+        .replaceAll('__MAPS__', fallbackMapsUrl());
       writeFileSync(resolve(out, 'go/index.html'), html);
     },
   };

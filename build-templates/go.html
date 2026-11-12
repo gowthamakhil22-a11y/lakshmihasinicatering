@@ -25,39 +25,71 @@
   <h1>Lakshmi Hasini Catering</h1>
   <p id="msg">Opening…</p>
   <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-  <noscript><p><a href="__BASE__">Open the menu</a></p></noscript>
+  <noscript><p><a href="__BASE__">Open the menu</a> · <a href="__MAPS__">Directions</a></p></noscript>
 </main>
 <script>
 (function () {
   // The QR code points here. Where it goes is set in /admin → Business details → QR code.
+  // If the menu sheet cannot be reached (or has no dishes), guests are sent to
+  // Google Maps instead, so the QR always leads somewhere useful.
   var API = '__API__';
   var MENU = '__BASE__';
+  var MAPS_FALLBACK = '__MAPS__';
+  var KEY = 'lhc.go.v1';
   var done = false;
+
   function go(url) {
     if (done) return;
     done = true;
     location.replace(url);
   }
+  function isLink(u) {
+    return /^https?:\/\/[^\s]+\.[^\s]+/i.test(String(u || ''));
+  }
+  function mapsFor(s) {
+    var m = String((s && s.maps_url) || '').trim();
+    if (/^https:\/\//i.test(m)) return m;
+    var addr = String((s && s.location) || '').trim();
+    return addr ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr) : MAPS_FALLBACK;
+  }
+  // Maps link from the last time this phone reached the sheet (the owner's exact pin).
+  function lastMaps() {
+    try {
+      var v = JSON.parse(localStorage.getItem(KEY) || 'null');
+      return v && isLink(v.maps) ? v.maps : '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function fallback() {
+    go(lastMaps() || MAPS_FALLBACK || MENU);
+  }
   function target(s) {
     var t = String((s && s.qr_target) || '').trim();
-    if (t === 'maps') {
-      var m = String(s.maps_url || '').trim();
-      if (/^https:\/\//i.test(m)) return m;
-      var addr = String(s.location || s.business_name || '').trim();
-      return addr ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr) : MENU;
-    }
-    if (/^https?:\/\/[^\s]+\.[^\s]+/i.test(t)) return t;
+    if (t === 'maps') return mapsFor(s);
+    if (isLink(t) && t !== 'https://') return t;
     return MENU;
   }
-  // Never leave a guest waiting: fall back to the menu after 6 s (Apps Script can take ~3 s when idle).
-  setTimeout(function () { go(MENU); }, 6000);
-  if (!API) return go(MENU);
+
+  // Do not keep a guest waiting: if the sheet has not answered in 6 s, open Maps.
+  setTimeout(fallback, 6000);
+  if (!API) return fallback();
   try {
     fetch(API, { cache: 'no-store', redirect: 'follow' })
       .then(function (r) { return r.json(); })
-      .then(function (j) { go(j && j.ok ? target(j.data && j.data.settings) : MENU); })
-      .catch(function () { go(MENU); });
-  } catch (e) { go(MENU); }
+      .then(function (j) {
+        var d = j && j.ok && j.data;
+        var hasMenu = d && d.items && d.items.length > 0;
+        if (!d || !hasMenu) return fallback();
+        try {
+          localStorage.setItem(KEY, JSON.stringify({ maps: mapsFor(d.settings || {}) }));
+        } catch (e) {}
+        go(target(d.settings || {}));
+      })
+      .catch(fallback);
+  } catch (e) {
+    fallback();
+  }
 })();
 </script>
 </body>
